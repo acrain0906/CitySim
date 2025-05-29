@@ -38,11 +38,11 @@ class Hud:
 
         render_pos = [self.width * 0.84 + 10, self.height * 0.74 + 10]
         object_width = self.build_surface.get_width() // 5
+        render_col = render_pos[0]
 
         tiles = []
-
-        for image_name, image in self.images.items(): # TODO update to split into columns of 4
-
+        for idx, item in enumerate(self.images.items()): # TODO update to split into columns of 4
+            image_name, image = item
             pos = render_pos.copy()
             image_tmp = image.copy()
             image_scale = self.scale_image(image_tmp, w=object_width)
@@ -57,8 +57,11 @@ class Hud:
                     "affordable": True
                 }
             )
-
-            render_pos[0] += image_scale.get_width() + 10
+            if idx % 4 == 0:
+                render_pos[0] = render_col
+                render_pos[1] += image_scale.get_height() + 10
+            else:
+                render_pos[0] += image_scale.get_width() + 10
 
         return tiles
 
