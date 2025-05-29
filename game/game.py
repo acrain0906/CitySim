@@ -7,6 +7,57 @@ from .camera import Camera
 from .hud import Hud
 from .resource_manager import ResourceManager
 from .workers import Worker
+import random
+
+
+names = [
+'Austin',
+'John',
+'Patrick',
+'Rubin',
+'Jason',
+'Joyce',
+'Rachel',
+'Howard',
+'Sue',
+'Laura',
+'Jacqueline',
+'Jack',
+'Sherry',
+'Miranda',
+'Camy',
+'Laurie',
+'Byron',
+'Ceci',
+'Erin',
+'Jess',
+'Gary',
+'Karis',
+'Alyssa',
+'Madison',
+'Michelle',
+'Shari',
+'Andy',
+'Keegan',
+'Kitara',
+'Greg',
+'Cindy',
+'Dane',
+'Logan',
+'Carla',
+'Michael',
+'Kathy',
+'Jim',
+'Carlos',
+'Joe',
+'Amanda',
+'Astha',
+'Shagun',
+'Kiki',
+'Kenneth',
+'Yukti',
+'Krissy'
+]
 
 def printMat(mat):
     for i in range(len(mat)):
@@ -33,7 +84,7 @@ class Game:
 
         # world
         self.world = World(self.resource_manager, self.entities, self.hud, 50, 50, self.width, self.height)
-        for _ in range(10): Worker(self.world.world[25][25], self.world)
+        for _ in range(10): Worker(names[random.randint(0, len(names))], self.world.world[25][25], self.world)
         # printMat(self.world.collision_matrix)
 
         # camera

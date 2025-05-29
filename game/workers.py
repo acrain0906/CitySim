@@ -10,7 +10,9 @@ from .pathfinder import AStarFinder
 
 class Worker:
 
-    def __init__(self, tile, world):
+    def __init__(self, name, tile, world):
+        self.name = name
+        print(self.name)
         self.world = world
         self.world.entities.append(self)
         image = pg.image.load("assets/graphics/worker.png").convert_alpha()
@@ -25,8 +27,13 @@ class Worker:
         self.path = []
         self.create_path()
         print(self.path)
+        self.offwork = 1 * 60 # 1 minute
+        self.home = [0,0] # address
+        self.work = [0,0] # address
         
     def create_path(self, endx = None, endy = None):
+        for row in self.world.collision_matrix:
+            print(row)
         searching_for_path = True
         while searching_for_path:
             x = endx if endx is not None and isinstance(endx, int) else random.randint(0, self.world.grid_length_x - 1)
@@ -37,7 +44,11 @@ class Worker:
                 self.end = [x, y]
                 finder = AStarFinder() 
                 self.path_index = 0
+                    
                 self.path = finder.find_path(self.start, self.end, self.world.collision_matrix)
+                for element in self.path:
+                    if self.world.collision_matrix[element[0]][element[1]] == 0:
+                        print(self.name, ' ', element)
                 searching_for_path = False
                 
     def change_tile(self, new_tile):
@@ -45,27 +56,28 @@ class Worker:
         # print(new_tile)
         self.world.workers[new_tile[0]][new_tile[1]] = self
         self.tile = self.world.world[new_tile[0]][new_tile[1]]
+        
+    def step (self):
+        try: # try to move if there are steps, otherwise just stay still 
+            # update position in the world
+            self.change_tile( self.path[self.path_index] )
+            self.path_index += 1 # update path index
+        except: 
+            return
 
     def update(self):
         now = pg.time.get_ticks()
         if now - self.move_timer < 1000:
             return; # skip time between each move
-        
-        try: # try to move if there are steps, otherwise just stay still 
-            new_pos = self.path[self.path_index]
-            # update position in the world
-            self.change_tile(new_pos)
-            self.path_index += 1
-            self.move_timer = now # update clock
-        except: 
+        self.step()
+        self.move_timer = now # update clock
+        if self.world.resource_manager.time >= self.offwork: # if after hours
+            # if not in a home
+            # look for a home
             pass;
-        offwork = 6
-        if self.world.resource_manager.time >= offwork*60:
-            print(new_pos)
-            print(new_pos == (25,25))
-        if self.world.resource_manager.time >= offwork*60 and new_pos != (25, 25): # if outside of 25, 25 after off work
+        if self.world.resource_manager.time >= self.offwork and new_pos != (25, 25): # if outside of 25, 25 after off work
             self.create_path(25, 25)
-        elif self.path_index >= len(self.path) - 1 and self.world.resource_manager.time < offwork*60:
+        elif self.path_index >= len(self.path) - 1 and self.world.resource_manager.time < self.offwork:
             self.create_path()
 
 
