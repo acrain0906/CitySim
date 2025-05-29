@@ -53,7 +53,10 @@ class Game:
                 pg.quit()
                 sys.exit()
             if event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE or event.key == pg.K_c and pg.key.get_mods() & pg.KMOD_CTRL:
+                if event.key == pg.K_c and pg.key.get_mods() & pg.KMOD_CTRL:
+                    pg.quit()
+                    sys.exit()
+                if event.key == pg.K_ESCAPE:
                     self.playing = False
 
     def update(self):
