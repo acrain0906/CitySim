@@ -9,9 +9,10 @@ class ResourceManager:
 
     def __init__(self):
         
-        self.max_length_day =  60 
-        self.max_length_day *= 16 # 16 minutes
-        self.time = time.time() % self.max_length_day 
+        self.length_of_day =  60 
+        self.length_of_day *= 16 # 16 minutes
+        self.time_start = time.time() % self.length_of_day 
+        self.time = (time.time() % self.max_length_day ) - self.time_start
 
         # resources
         self.resources = {
@@ -42,4 +43,4 @@ class ResourceManager:
         return affordable
         
     def tick(self):
-        self.time = time.time() % self.max_length_day 
+        self.time = (time.time() % self.max_length_day ) - self.time_start
