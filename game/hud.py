@@ -41,7 +41,7 @@ class Hud:
 
         tiles = []
 
-        for image_name, image in self.images.items():
+        for image_name, image in self.images.items(): # TODO update to split into columns of 4
 
             pos = render_pos.copy()
             image_tmp = image.copy()
@@ -63,7 +63,7 @@ class Hud:
         return tiles
 
     def update(self):
-        
+
         mouse_pos = pg.mouse.get_pos()
         mouse_action = pg.mouse.get_pressed()
 
@@ -104,7 +104,7 @@ class Hud:
         pos = self.width - 600
         for resource, resource_value in self.resource_manager.resources.items():
             txt = resource + ": " + str(resource_value)
-            draw_text(screen, txt, 30, (255, 255, 255), (pos, 0))
+            draw_text(screen, txt, 30, (255, 255, 255), (pos, 5))
             pos += 100
         
         # Clock
@@ -124,12 +124,16 @@ class Hud:
         # read images
         lumbermill = pg.image.load("assets/graphics/building01.png")
         stonemasonry = pg.image.load("assets/graphics/building02.png")
-        farm = pg.image.load("assets/graphics/farm.png")
+        farm = pg.image.load("assets/graphics/building03.png")
+        house = pg.image.load("assets/graphics/house.png")
+        towncenter = pg.image.load("assets/graphics/towncenter.png")
 
         images = {
             "lumbermill": lumbermill,
             "stonemasonry": stonemasonry,
-            "farm": farm
+            "farm": farm,
+            "house": house,
+            "towncenter": towncenter
         }
 
         return images

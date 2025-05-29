@@ -1,5 +1,6 @@
 
 import pygame as pg
+import time
 
 
 
@@ -11,7 +12,7 @@ class ResourceManager:
         self.max_length_day =  60 
         self.max_length_day *= 16 # 16 minutes
         self.time = time.time() % self.max_length_day 
-        
+
         # resources
         self.resources = {
             "wood": 10,
@@ -20,11 +21,13 @@ class ResourceManager:
             "cash" : 100
         }
 
-        #costs
+        # costs
         self.costs = {
-            "lumbermill": {"wood": 7, "stone": 3},
-            "stonemasonry": {"wood": 3, "stone": 5},
-            "farm": {"wood": 3, "stone": 5}
+            "lumbermill": {"food": 7, "stone": 4, "cash" : 10},
+            "stonemasonry": {"food": 7, "wood": 5, "cash" : 10},
+            "farm": {"wood": 1, "stone": 0, "cash" : 2},
+            "house": {"food": 7, "wood": 5, "cash" : 10},
+            "towncenter": {"food": 7, "wood": 5, "cash" : 10}
         }
 
     def apply_cost_to_resource(self, building):
@@ -37,5 +40,6 @@ class ResourceManager:
             if cost > self.resources[resource]:
                 affordable = False
         return affordable
-    def tick ():
+        
+    def tick(self):
         self.time = time.time() % self.max_length_day 

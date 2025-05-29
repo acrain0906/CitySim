@@ -39,7 +39,7 @@ class AStarFinder:
 
     # Trace the path from source to destination
     def trace_path(self, cell_details, dest):
-        print("The Path is ")
+        # print("The Path is ")
         path = []
         row = dest[0]
         col = dest[1]
@@ -128,7 +128,7 @@ class AStarFinder:
                         # Set the parent of the destination cell
                         cell_details[new_i][new_j].parent_i = i
                         cell_details[new_i][new_j].parent_j = j
-                        print("The destination cell is found")
+                        print("The destination cell is found: ", dest)
                         # Trace and print the path from source to destination
                         return self.trace_path(cell_details, dest)
                     else:

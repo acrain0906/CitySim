@@ -72,7 +72,7 @@ class Game:
             'fps={}'.format(round(self.clock.get_fps())),
             25,
             (255, 255, 255),
-            (10, 10)
+            (50, 10)
         )
 
         pg.display.flip()
