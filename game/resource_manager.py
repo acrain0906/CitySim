@@ -12,7 +12,8 @@ class ResourceManager:
         self.resources = {
             "wood": 10,
             "stone": 10,
-            "food" : 10
+            "food" : 10, 
+            "cash" : 100
         }
 
         #costs
