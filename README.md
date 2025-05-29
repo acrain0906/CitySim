@@ -1,10 +1,12 @@
 # City Simulator
 Based on: https://github.com/scartwright91/city_builder_tutorial.git
 
+## Phase 1
 added pathfinding library
 added farm building
 add food 
 
+## Phase 2
 and cash
 continuous movement for workers between tiles? 
 add homes 
@@ -12,7 +14,7 @@ add daily clock to HUD
 add work schedule between TC, home, and job 
 update farm to be 2x2
 
-
+## Ideas
 contrl - c and arror keys should also work
 how to collect all buildings job openings
 how to make prople select jobs, remember housing, how would a town center work? taxes and housing? 
@@ -28,10 +30,10 @@ workers automatically build homes near ( but not on TC) after 1 day of exploring
 they should search for homes and jobs available before building their own
 job building have limited job opportunities
 
-Based 
 
 
 
+## Phase 3
 - Workers go home at night, wander during day
 + crtl c  
 + arrow keys
@@ -50,18 +52,13 @@ what about getting started?
 + if end is blocked, still calculate and then drop the last node? 
 + really create your own pathfinding AStar
 
-# to test: create a house, house has 5 villagers, releases one 4 every cycle, and they immediately start exploring.  
-
-
-# workers wait before overlapping on each other, or choose a new path? remember the destination?
-
-# around night time, randomly start going home 
-
-# search for home, if no home available, build new home (near to another home or TC or randomly)
-
-# add mill, farm and mill worker mindset
-
-# remember work and home
+## Phase 4
+ - to test: create a house, house has 5 villagers, releases one 4 every cycle, and they immediately start exploring.  
+ - workers wait before overlapping on each other, or choose a new path? remember the destination?
+ - around night time, randomly start going home 
+ - search for home, if no home available, build new home (near to another home or TC or randomly)
+ - add mill, farm and mill worker mindset
+ - remember work and home
 
 search for job or build subsistance farm 
 if job and no food, quit job build subsistance farm  
