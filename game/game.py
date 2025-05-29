@@ -8,6 +8,12 @@ from .hud import Hud
 from .resource_manager import ResourceManager
 from .workers import Worker
 
+def printMat(mat):
+    for i in range(len(mat)):
+        s = ''
+        for j in range(len(mat[0])):
+            s += f'{mat[i][j]} '
+        print (s) 
 
 class Game:
 
@@ -28,6 +34,7 @@ class Game:
         # world
         self.world = World(self.resource_manager, self.entities, self.hud, 50, 50, self.width, self.height)
         for _ in range(10): Worker(self.world.world[25][25], self.world)
+        # printMat(self.world.collision_matrix)
 
         # camera
         self.camera = Camera(self.width, self.height)

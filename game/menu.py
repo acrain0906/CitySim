@@ -64,7 +64,7 @@ class GameMenu:
     def run(self):
         self.menu_running = True
         while self.menu_running:
-            self.clock.tick(60)
+            self.clock.tick(60)  # what does tick do?
             self.update()
             self.draw()
         return self.playing

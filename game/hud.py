@@ -112,10 +112,12 @@ class Hud:
         # read images
         lumbermill = pg.image.load("assets/graphics/building01.png")
         stonemasonry = pg.image.load("assets/graphics/building02.png")
+        farm = pg.image.load("assets/graphics/farm.png")
 
         images = {
             "lumbermill": lumbermill,
-            "stonemasonry": stonemasonry
+            "stonemasonry": stonemasonry,
+            "farm": farm
         }
 
         return images
