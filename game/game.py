@@ -84,7 +84,7 @@ class Game:
 
         # world
         self.world = World(self.resource_manager, self.entities, self.hud, 50, 50, self.width, self.height)
-        for _ in range(10): Worker(names[random.randint(0, len(names))], self.world.world[25][25], self.world)
+        for _ in range(10): Worker(names[random.randint(0, len(names)-1)], self.world.world[25][25], self.world)
         # printMat(self.world.collision_matrix)
 
         # camera
