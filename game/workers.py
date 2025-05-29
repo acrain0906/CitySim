@@ -26,14 +26,14 @@ class Worker:
         
         self.path = []
         self.create_path()
-        print(self.path)
-        self.offwork = 1 * 60 # 1 minute
+        
+        self.offwork = random.gauss(1 * 60, 3) # ~1 minute
         self.home = [0,0] # address
         self.work = [0,0] # address
         
     def create_path(self, endx = None, endy = None):
         for row in self.world.collision_matrix:
-            print(row)
+            pass # print(row)
         searching_for_path = True
         while searching_for_path:
             x = endx if endx is not None and isinstance(endx, int) else random.randint(0, self.world.grid_length_x - 1)
@@ -46,9 +46,6 @@ class Worker:
                 self.path_index = 0
                     
                 self.path = finder.find_path(self.start, self.end, self.world.collision_matrix)
-                for element in self.path:
-                    if self.world.collision_matrix[element[0]][element[1]] == 0:
-                        print(self.name, ' ', element)
                 searching_for_path = False
                 
     def change_tile(self, new_tile):
@@ -71,10 +68,6 @@ class Worker:
             return; # skip time between each move
         self.step()
         self.move_timer = now # update clock
-        if self.world.resource_manager.time >= self.offwork: # if after hours
-            # if not in a home
-            # look for a home
-            pass;
         if self.world.resource_manager.time >= self.offwork and new_pos != (25, 25): # if outside of 25, 25 after off work
             self.create_path(25, 25)
         elif self.path_index >= len(self.path) - 1 and self.world.resource_manager.time < self.offwork:
