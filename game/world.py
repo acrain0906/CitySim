@@ -33,6 +33,8 @@ class World:
 
     def update(self, camera): # update if press button
         
+        self.resource_manager.tick()
+        
         mouse_pos = pg.mouse.get_pos()
         mouse_action = pg.mouse.get_pressed()
 

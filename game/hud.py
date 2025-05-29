@@ -63,7 +63,7 @@ class Hud:
         return tiles
 
     def update(self):
-
+        
         mouse_pos = pg.mouse.get_pos()
         mouse_action = pg.mouse.get_pressed()
 
@@ -101,11 +101,23 @@ class Hud:
             screen.blit(icon, tile["rect"].topleft)
 
         # resources
-        pos = self.width - 400
+        pos = self.width - 600
         for resource, resource_value in self.resource_manager.resources.items():
             txt = resource + ": " + str(resource_value)
             draw_text(screen, txt, 30, (255, 255, 255), (pos, 0))
             pos += 100
+        
+        # Clock
+        pos = self.width - 800
+        minutes = int(self.resource_manager.time // 60)
+        seconds = int(self.resource_manager.time % 60)
+        draw_text(
+            screen,
+            '{}:{}'.format(minutes, seconds),
+            30,
+            (255, 255, 255),
+            (pos, 5)
+        )
 
     def load_images(self):
 

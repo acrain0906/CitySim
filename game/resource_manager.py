@@ -7,7 +7,11 @@ class ResourceManager:
 
 
     def __init__(self):
-
+        
+        self.max_length_day =  60 
+        self.max_length_day *= 16 # 16 minutes
+        self.time = time.time() % self.max_length_day 
+        
         # resources
         self.resources = {
             "wood": 10,
@@ -33,4 +37,5 @@ class ResourceManager:
             if cost > self.resources[resource]:
                 affordable = False
         return affordable
-
+    def tick ():
+        self.time = time.time() % self.max_length_day 
