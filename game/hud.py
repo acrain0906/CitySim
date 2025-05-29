@@ -38,11 +38,11 @@ class Hud:
 
         render_pos = [self.width * 0.84 + 10, self.height * 0.74 + 10]
         object_width = self.build_surface.get_width() // 5
+        render_col = render_pos[0]
 
         tiles = []
-
-        for image_name, image in self.images.items():
-
+        for idx, item in enumerate(self.images.items()): # TODO update to split into columns of 4
+            image_name, image = item
             pos = render_pos.copy()
             image_tmp = image.copy()
             image_scale = self.scale_image(image_tmp, w=object_width)
@@ -57,8 +57,11 @@ class Hud:
                     "affordable": True
                 }
             )
-
-            render_pos[0] += image_scale.get_width() + 10
+            if idx % 4 == 0:
+                render_pos[0] = render_col
+                render_pos[1] += image_scale.get_height() + 10
+            else:
+                render_pos[0] += image_scale.get_width() + 10
 
         return tiles
 
@@ -101,23 +104,39 @@ class Hud:
             screen.blit(icon, tile["rect"].topleft)
 
         # resources
-        pos = self.width - 400
+        pos = self.width - 600
         for resource, resource_value in self.resource_manager.resources.items():
             txt = resource + ": " + str(resource_value)
-            draw_text(screen, txt, 30, (255, 255, 255), (pos, 0))
+            draw_text(screen, txt, 30, (255, 255, 255), (pos, 5))
             pos += 100
+        
+        # Clock
+        pos = self.width - 800
+        minutes = int(self.resource_manager.time // 60)
+        seconds = int(self.resource_manager.time % 60)
+        draw_text(
+            screen,
+            '{}:{}'.format(minutes, seconds),
+            30,
+            (255, 255, 255),
+            (pos, 5)
+        )
 
     def load_images(self):
 
         # read images
         lumbermill = pg.image.load("assets/graphics/building01.png")
         stonemasonry = pg.image.load("assets/graphics/building02.png")
-        farm = pg.image.load("assets/graphics/farm.png")
+        farm = pg.image.load("assets/graphics/building03.png")
+        house = pg.image.load("assets/graphics/house.png")
+        towncenter = pg.image.load("assets/graphics/towncenter.png")
 
         images = {
             "lumbermill": lumbermill,
             "stonemasonry": stonemasonry,
-            "farm": farm
+            "farm": farm,
+            "house": house,
+            "towncenter": towncenter
         }
 
         return images
