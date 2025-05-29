@@ -57,6 +57,9 @@ class AStarFinder:
         # Reverse the path to get the path from source to destination
         path.reverse()
         
+        if self.destination_blocked:
+            del path[-1]
+        
         return path
 
     # Implement the A* search algorithm
@@ -72,14 +75,16 @@ class AStarFinder:
             print("Destination is invalid")
             return [src]
         
-        if not self.is_unblocked(grid, src[0], src[1]):
-            print("Source is blocked")
-            return []
+        # if not self.is_unblocked(grid, src[0], src[1]):
+            # print("Source is blocked")
+            # return []
 
         # Check if the source and destination are unblocked
+        self.destination_blocked = False
         if not self.is_unblocked(grid, dest[0], dest[1]):
             print("the destination is blocked")
-            return [src]
+            self.destination_blocked = True
+            # return [src]
 
         # Check if we are already at the destination
         if self.is_destination(src[0], src[1], dest):
