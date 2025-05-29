@@ -53,7 +53,7 @@ class Game:
                 pg.quit()
                 sys.exit()
             if event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE or event.key == pygame.K_c and pygame.key.get_mods() & pygame.KMOD_CTRL:
+                if event.key == pg.K_ESCAPE or event.key == pg.K_c and pg.key.get_mods() & pg.KMOD_CTRL:
                     self.playing = False
 
     def update(self):
