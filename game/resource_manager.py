@@ -11,13 +11,15 @@ class ResourceManager:
         # resources
         self.resources = {
             "wood": 10,
-            "stone": 10
+            "stone": 10,
+            "food" : 10
         }
 
         #costs
         self.costs = {
             "lumbermill": {"wood": 7, "stone": 3},
-            "stonemasonry": {"wood": 3, "stone": 5}
+            "stonemasonry": {"wood": 3, "stone": 5},
+            "farm": {"wood": 3, "stone": 5}
         }
 
     def apply_cost_to_resource(self, building):
